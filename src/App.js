@@ -17,7 +17,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {MyInput,MyButton} from './components'
+import {MyInput,MyButton,ListItem} from './components'
 
 const App = () => {
 
@@ -34,11 +34,6 @@ const App = () => {
       setList(newList)
   }
 
-  // onTopListItem=()=>{
-  //   <TouchableOpacity style={styles.doneStyle}>
- // </TouchableOpacity>
-  // }
-
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -47,7 +42,9 @@ const App = () => {
         <FlatList
         keyExtractor={(item,index)=>index.toString()}
         data={list}
-        renderItem={({item})=><Text style={styles.listStyle}>{item.myEntry}</Text>}>
+        renderItem={({item})=>
+          <ListItem data={item}></ListItem>
+        }>
         </FlatList>
         <MyInput textChange={changeText}myPlace="Yapılacak iş girin..."></MyInput>
         <MyButton myTitle="Ekle"myPress={addToList}/>
@@ -67,7 +64,7 @@ const styles = StyleSheet.create({
   },
   listStyle:{
     flex:1,
-    backgroundColor:'#eb4d4b',
+    backgroundColor:'#ff7979',
     width:Dimensions.get("window").width/1.05,
     padding:10,
     marginTop:5,
